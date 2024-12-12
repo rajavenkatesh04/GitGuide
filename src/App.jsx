@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 import SubjectCard from "./components/SubjectCard";
 import BranchOverview from "./features/branch/BranchOverview";
 import GitScenario from "./features/gitGuide/GitScenarios";
-import Breadcrumbs from "./components/Breadcrumbs";
+import Breadcrumbs from "./components/BreadCrumbs";
 
 function App() {
   return (
