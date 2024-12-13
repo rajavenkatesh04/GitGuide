@@ -78,7 +78,7 @@ $ git push origin main
     },
     {
       title: "Scenario 3: Adding a Cloud Repository ☁️",
-      problem: `You have a repository on GitHub, but you don't have it on your local machine yet. You want to clone it to work locally.`,
+      problem: `You have a repository on GitHub, but you don't have it on your local machine yet. You want to clone it to work locally and start pushing commits.`,
       steps: `
 # Step 1: Navigate to project directory
 $ cd path/to/directory
