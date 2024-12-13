@@ -248,7 +248,8 @@ $ git push origin main
             <h3 className="font-medium text-lg sm:text-xl mb-2">Problem:</h3>
             <p className="text-sm sm:text-base">
               You have a repository on GitHub, but you don't have it on your
-              local machine yet. You want to clone it to work locally.
+              local machine yet. You want to clone it to work locally & push
+              changes to cloud.
             </p>
           </div>
 
@@ -261,11 +262,11 @@ $ git push origin main
 # Step 1: Navigate to project directory
 $ cd path/to/directory
 
-# Step 2: Clone repository
-$ git clone https://github.com/username/repo.git
+# Step 2: Initialise git if not already done
+$ git init
 
-# Step 3: Enter project directory
-$ cd your-repository
+# Step 3:Link local Repository to remote cloud repository
+$ git remote add origin your-repo-link-here
 
 # Step 4: Check remote connection
 $ git remote -v
