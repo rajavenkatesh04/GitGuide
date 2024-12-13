@@ -2,16 +2,14 @@ import React from "react";
 
 const Scenario = ({ title, problem, steps, isMobile }) => (
   <section
-    className={`mb-8 ${!isMobile ? "hidden md:block" : "md:hidden"} ${
-      !isMobile ? "bg-gray-900/30 rounded-lg p-3 sm:p-5" : ""
+    className={`mb-8 bg-gray-900/30 rounded-lg p-3 sm:p-5 ${
+      !isMobile ? "hidden md:block" : "md:hidden"
     }`}
   >
     <h2 className="text-2xl sm:text-3xl font-semibold mb-4 text-center">
       {title}
     </h2>
-    {!isMobile && (
-      <hr className="border-t-2 border-white/20 mb-4 mx-4 sm:mx-8" />
-    )}
+    <hr className="border-t-2 border-white/20 mb-4 mx-4 sm:mx-8" />
     <div className="space-y-4">
       <div>
         <h3 className="font-medium text-lg sm:text-xl mb-2">Problem:</h3>
