@@ -100,4 +100,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For any inquiries, reach out at [rg3941@srmist.edu.in](mailto:rg3941@srmist.edu.in).
+For any inquiries, reach out at [rg3941@srmist.edu.in](mailto:grv.9604@gmail.com).
