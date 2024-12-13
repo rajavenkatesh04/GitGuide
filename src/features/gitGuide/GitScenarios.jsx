@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 const Scenario = ({ title, problem, steps, isMobile }) => (
   <section
-    className={`mb-8 bg-gray-900/30 rounded-lg p-3 sm:p-5 ${
+    className={`mb-8 bg-gray-900/30 rounded-lg p-3 sm:p-5 scenario-item ${
       !isMobile ? "hidden md:block" : "md:hidden"
     }`}
   >
@@ -28,6 +33,65 @@ const Scenario = ({ title, problem, steps, isMobile }) => (
 );
 
 const GitScenarios = () => {
+  const mainTitleRef = useRef(null);
+  const scenariosRef = useRef([]);
+  const additionalNotesRef = useRef(null);
+
+  useEffect(() => {
+    // Animate main title
+    gsap.fromTo(
+      mainTitleRef.current,
+      { opacity: 0, y: -50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out",
+      }
+    );
+
+    // Animate scenarios with scroll trigger
+    scenariosRef.current.forEach((scenario, index) => {
+      gsap.fromTo(
+        scenario,
+        {
+          opacity: 0,
+          x: index % 2 === 0 ? -100 : 100,
+          scale: 0.9,
+        },
+        {
+          opacity: 1,
+          x: 0,
+          scale: 1,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: scenario,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    });
+
+    // Animate additional notes
+    gsap.fromTo(
+      additionalNotesRef.current,
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: additionalNotesRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+  }, []);
+
   const scenarios = [
     {
       title: "Scenario 1: Sync Local Changes to Remote Repository 🌍",
@@ -100,28 +164,38 @@ $ git push origin main
 
   return (
     <div className="text-white px-2 sm:px-4 md:px-8 lg:px-16">
-      <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
+      <h1
+        ref={mainTitleRef}
+        className="text-3xl sm:text-4xl font-bold mb-8 text-center"
+      >
         Git Scenarios 🛠️
       </h1>
 
       {scenarios.map((scenario, index) => (
         <React.Fragment key={index}>
-          <Scenario
-            title={scenario.title}
-            problem={scenario.problem}
-            steps={scenario.steps}
-            isMobile={false}
-          />
-          <Scenario
-            title={scenario.title}
-            problem={scenario.problem}
-            steps={scenario.steps}
-            isMobile={true}
-          />
+          <div ref={(el) => (scenariosRef.current[index * 2] = el)}>
+            <Scenario
+              title={scenario.title}
+              problem={scenario.problem}
+              steps={scenario.steps}
+              isMobile={false}
+            />
+          </div>
+          <div ref={(el) => (scenariosRef.current[index * 2 + 1] = el)}>
+            <Scenario
+              title={scenario.title}
+              problem={scenario.problem}
+              steps={scenario.steps}
+              isMobile={true}
+            />
+          </div>
         </React.Fragment>
       ))}
 
-      <section className="mb-8 bg-gray-900/30 rounded-lg p-3 sm:p-5">
+      <section
+        ref={additionalNotesRef}
+        className="mb-8 bg-gray-900/30 rounded-lg p-3 sm:p-5"
+      >
         <h3 className="font-medium text-lg sm:text-xl mb-4">
           Additional Notes 📝:
         </h3>
