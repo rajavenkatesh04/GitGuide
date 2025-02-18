@@ -16,7 +16,7 @@ const Footer = () => {
           {/* Made by Raja */}
           <span className="sm:text-right text-center">
             Made with <span className="text-pink-500">💻</span> and{" "}
-            <span className="text-pink-500">❤️</span> by Raja
+            <span className="text-pink-500">❤️</span>
           </span>
         </div>
       </div>
